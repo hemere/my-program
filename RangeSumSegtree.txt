@@ -1,0 +1,38 @@
+
+struct RSst{
+  vector<ll> d;
+  int zero;
+  RSst(int sz, int num){
+    int x = 1;
+    while(x < sz) x *= 2;
+    zero = x;
+    d.resize(x * 2, num);
+  }
+  void plus(int l, int r, ll x){
+    if(l >= r) return;
+    l += zero;
+    r += zero;
+    while(1){
+      if(l %2 == 1){
+        d[l] += x;
+        ++l;
+      }
+      if(r %2 == 1){
+        d[r-1] += x;
+        --r;
+      }
+      if(l == r) break;
+      l /= 2;
+      r /= 2;
+    }
+  }
+  ll sm(int num){
+    ll rt = 0;
+    num += zero;
+    while(num >= 1){
+      rt += d[num];
+      num /= 2;
+    }
+    return rt;
+  }
+};

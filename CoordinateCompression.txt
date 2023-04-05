@@ -1,0 +1,15 @@
+// 1-indexで座標圧縮O(NlogN)
+void ccomp(vector<int> &v){
+  int n = v.size();
+  vector<pair<int,int>> nv(n);
+  for(int i=0; i<n; ++i) nv[i] = make_pair(v[i],i);
+  sort(nv.begin(),nv.end());
+  int cnt = 0, num = -1;
+  for(int i=0; i<n; ++i){
+    if(num < nv[i].first){
+      ++cnt;
+      num = nv[i].first;
+    }
+    v[nv[i].second] = cnt;
+  }
+}

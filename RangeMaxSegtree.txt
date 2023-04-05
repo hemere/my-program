@@ -1,0 +1,40 @@
+struct RMst{
+  vector<int> d;
+  int zero;
+  RMst(int sz, int num){
+    int x = 1;
+    while(x < sz) x *= 2;
+    zero = x;
+    d.resize(x * 2, num);
+  }
+  void setnum(int di, int num){
+    di += zero;
+    d[di] = num;
+    di /= 2;
+    while(di >= 1 && d[di] < num){
+      d[di] = num;
+      di /= 2;
+    }
+    return;
+  }
+  int ranmax(int l, int r){ //0-index,[l,r)
+    if(l >= r) return -1;
+    int x = -1001001001;
+    l += zero;
+    r += zero;
+    while(1){
+      if(l %2 == 1){
+        x = max(x, d[l]);
+        ++l;
+      }
+      if(r %2 == 1){
+        x = max(x, d[r-1]);
+        --r;
+      }
+      if(l == r) break;
+      l /= 2;
+      r /= 2;
+    }
+    return x;
+  }
+};
