@@ -1,3 +1,6 @@
+//問題:https://atcoder.jp/contests/tessoku-book/tasks/tessoku_book_af
+//提出:https://atcoder.jp/contests/tessoku-book/submissions/37105982
+//2022-12-09AC
 #include<bits/stdc++.h>
 using namespace std;
 
